@@ -22,7 +22,7 @@
 	for($r = 0; $r < count($vehicles_data); $r++)
 	{
 		$vhc = $vhc . $vehicles_data[$r][3] . " " . $vehicles_data[$r][2] . " VIN#" . $vehicles_data[$r][5];
-		$vhc = $vhc . " W/$" . number_format($vehicles_data[$r][7]) . " PHYSICAL DAMAGE DED. $" . number_format($vehicles_data[$r][8]) . " " . $vehicles_data[$r][6];
+		$vhc = $vhc . " W/$" . number_format($vehicles_data[$r][7]) . " PHYSICAL DAMAGE DED. $" . number_format($vehicles_data[$r][8]) . " ";
 		$vhc = $vhc . ($r < (count($vehicles_data) - 1) ? ", " : " ");
 	}
 	

@@ -6,7 +6,7 @@
 
 	$obj;
     $jsnObj;
-	$users_data = array();
+	$client_logs = array();
 	
 	$id = $_REQUEST["cid"];
 
