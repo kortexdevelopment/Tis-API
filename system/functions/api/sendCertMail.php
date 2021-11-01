@@ -1,12 +1,18 @@
 <?php
 $to = $_GET["to"];
-$reply = 'certifications@truckinsurancesolutions.org'; 
 $pid = $_GET["pid"];
 $link = $_SERVER["DOCUMENT_ROOT"] . "/system/ready_files/certs/cert". $pid . ".pdf";
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/system/functions/db_config.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/system/functions/api/sendCertReply.php";
 
-$reply = $_data[0];
+$dataFilter = explode(':', $_data[0]);
+$reply = "{$dataFilter[1]}";
+$bcc = $reply;
+
+if($reply == 'Not Set'){
+    $reply = 'certifications@truckinsurancesolutions.org'; 
+    $bcc = 'carlos.reyes.llamas.2008@gmail.com'; //Dev mail
+}
 
 // Sender 
 $from = 'certifications@truckinsurancesolutions.org'; 
@@ -26,7 +32,7 @@ $htmlContent = '
  
 // Header for sender info 
 $headers = "From: $fromName"." <".$from.">"; 
-$headers .= "\nBcc: <carlos.reyes.llamas.2008@gmail.com>";
+$headers .= "\nBcc: <".$bcc.">";
 $headers .= "\nReply-To: <".$reply.">";
  
 // Boundary  
@@ -61,12 +67,12 @@ $returnpath = "-f" . $from;
 // Send email 
 $mail = @mail($to, $subject, $message, $headers, $returnpath);  
  
- 
 $obj;
 
 if($mail)
 {
     $obj->success = true;
+    $obj->reply = $reply;
 }
 else
 {

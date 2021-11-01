@@ -18,16 +18,25 @@
 	$model = $data->model;
 	$vin = $data->vin;
 	
-	$value = $data->value;
-	$deductible = $data->deductible;
+	$value1 = $data->value;
+	$deductible1 = $data->deductible;
+	$value2 = $data->value;
+	$deductible2 = $data->deductible;
+	$value3 = $data->value;
+	$deductible3 = $data->deductible;
+	$value4 = $data->value;
+	$deductible4 = $data->deductible;
 	
-	$sql = "INSERT INTO vehicles (id, clients_id, make, year, gvw, vin, model, trailer_v, trailer_d) VALUES (0,?,?,?,?,?,?,?,?)";
+	//, tractor_v, tractor_d, non_v, non_d, inter_v, inter_d
+	//,?,?,?,?,?,?
+
+	$sql = "INSERT INTO vehicles (id, clients_id, make, year, gvw, vin, model, trailer_v, trailer_d, tractor_v, tractor_d, non_v, non_d, inter_v, inter_d) VALUES (0,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	if($stmt = $db_conn->prepare($sql))
 	{
-		$stmt->bind_param("isssssdd", 
+		$stmt->bind_param("isssssdddddddd", 
 				$client_id, $make, $year, $gvw, $vin, $model, 
-				$value, $deductible);
+				$value1, $deductible1, $value2, $deductible2, $value3, $deductible3, $value4, $deductible4);
 
 		if($stmt->execute())
 		{
