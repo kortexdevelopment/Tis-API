@@ -9,12 +9,11 @@
 	$raw = file_get_contents('php://input');
     $data = json_decode($raw);
 
-	$sql = "UPDATE vehicles SET make = ?, year = ?, gvw = ?, vin = ?, model = ?, trailer_v = ?, trailer_d = ?, tractor_v = ?, tractor_d = ?, non_v = ?, non_d = ?, inter_v = ?, inter_d = ? 
-			WHERE id = ?";
+	$sql = "UPDATE vehicles SET make = ?, year = ?, gvw = ?, vin = ?, model = ?, trailer_v = ?, trailer_d = ?, tractor_v = ?, tractor_d = ?, non_v = ?, non_d = ?, inter_v = ?, inter_d = ? WHERE id = ?";
 
 	if($stmt = $db_conn->prepare($sql))
 	{
-		$stmt->bind_param("ddddddi", $liab_v, $liab_d, $cargo_v, $cargo_d, $gral_v, $gral_d, $cover_id);
+		$stmt->bind_param("sssssddddddddi", $data->make, $data->year, $data->gvw, $data->vin, $data->model, $data->value, $data->deductible, $data->value, $data->deductible, $data->value, $data->deductible, $data->value, $data->deductible, $data->id);
 
 		if($stmt->execute())
 		{

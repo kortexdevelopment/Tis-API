@@ -1,5 +1,6 @@
 <?php
 $to = $_GET["to"];
+$cc = $_GET["cc"];
 $pid = $_GET["pid"];
 $link = $_SERVER["DOCUMENT_ROOT"] . "/system/ready_files/certs/cert". $pid . ".pdf";
 
@@ -11,7 +12,7 @@ $bcc = $reply;
 
 if($reply == 'Not Set'){
     $reply = 'certifications@truckinsurancesolutions.org'; 
-    $bcc = 'carlos.reyes.llamas.2008@gmail.com'; //Dev mail
+    $bcc = 'certifications@truckinsurancesolutions.org'; //Dev mail
 }
 
 // Sender 
@@ -33,6 +34,7 @@ $htmlContent = '
 // Header for sender info 
 $headers = "From: $fromName"." <".$from.">"; 
 $headers .= "\nBcc: <".$bcc.">";
+$headers .= "\nCc: <".$cc.">";
 $headers .= "\nReply-To: <".$reply.">";
  
 // Boundary  

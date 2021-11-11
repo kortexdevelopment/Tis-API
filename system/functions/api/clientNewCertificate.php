@@ -6,7 +6,8 @@
 	
 	//General propurse data/////////////////////////////////
 	$dta_general = array();
-	
+	$dta_general["note"] = $_GET["note"];	
+
 	//Date value
 	$dta_general["date"] = date(" m / d / Y");
 

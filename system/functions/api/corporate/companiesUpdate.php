@@ -44,9 +44,11 @@
 		if($stmt->execute())
 		{
 			$obj->success = TRUE;
+			$obj->msg = "Company updated successfully";
 		}
 		else{
 			$obj->success = FALSE;
+			$obj->msg = "Company update could not be processed";
 		}
 	}
 	
